@@ -1,0 +1,15 @@
+{
+  "name": "@salte-auth/examples-basic",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "parcel -p 8081 index.html"
+  },
+  "dependencies": {
+    "@salte-auth/auth0": "^1.0.0-rc.1",
+    "@salte-auth/popup": "^1.0.0-rc.3",
+    "@salte-auth/salte-auth": "^3.0.0-rc.15"
+  },
+  "devDependencies": {
+    "parcel": "^1.12.4"
+  }
+}
