@@ -7,7 +7,7 @@
   "dependencies": {
     "@salte-auth/auth0": "^1.0.0-rc.1",
     "@salte-auth/popup": "^1.0.0-rc.3",
-    "@salte-auth/salte-auth": "^3.0.0-rc.15"
+    "@salte-auth/salte-auth": "^3.0.0"
   },
   "devDependencies": {
     "parcel": "^1.12.4"
