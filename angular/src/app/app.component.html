@@ -1,0 +1,17 @@
+<h1>User Info</h1>
+<div *ngFor="let token of tokens | keyvalue">
+  <h2>{{token.key}}</h2>
+  <button
+    [disabled]="!token.value.expired"
+    (click)="login(token.key)"
+  >
+    Login
+  </button>
+  <button
+    [disabled]="token.value.expired"
+    (click)="logout(token.key)"
+  >
+    Logout
+  </button>
+  <code>{{json(token.value.user)}}</code>
+</div>

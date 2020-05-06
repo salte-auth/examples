@@ -25,5 +25,6 @@
 
 - [Vanilla](./vanilla) - An example of using Salte Auth with Vanilla JavaScript!
 - [React](./react) - An example of using Salte Auth with React!
+- [Angular](./angular) - An example of using Salte Auth with Angular!
 
 _Don't see an example for your framework of choice? Feel free to open an issue or even contibute it!_

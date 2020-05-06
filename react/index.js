@@ -21,10 +21,10 @@ const auth = new SalteAuth({
 });
 
 export function App() {
-  const [tokens, setTokens] = useState(auth.config.providers.reduce((output, provider) => {
-    output[provider.name] = provider.idToken || provider.accessToken || provider.code;
-    return output;
-  }, {}));
+  const [tokens, setTokens] = useState(auth.config.providers.reduce((output, provider) => ({
+    ...output,
+    [provider.name]: provider.idToken || provider.accessToken || provider.code
+  }), {}));
 
   useEffect(() => {
     const onAuth = (error, { provider }) => {
