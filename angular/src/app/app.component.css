@@ -1,0 +1,23 @@
+
+:host > *:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+h1, h2 {
+  margin: 0;
+  margin-bottom: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  font-size: 20px;
+}
+
+h2 {
+  font-size: 16px;
+}
+
+code {
+  display: block;
+  white-space: pre;
+}
