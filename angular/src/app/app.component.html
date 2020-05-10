@@ -2,16 +2,16 @@
 <div *ngFor="let token of tokens | keyvalue">
   <h2>{{token.key}}</h2>
   <button
-    [disabled]="!token.value.expired"
+    [disabled]="!expired(token.value)"
     (click)="login(token.key)"
   >
     Login
   </button>
   <button
-    [disabled]="token.value.expired"
+    [disabled]="expired(token.value)"
     (click)="logout(token.key)"
   >
     Logout
   </button>
-  <code>{{json(token.value.user)}}</code>
+  <code>{{user(token.value)}}</code>
 </div>

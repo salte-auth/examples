@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { SalteAuth, Provider, OpenIDProvider, OAuth2Provider } from '@salte-auth/salte-auth';
 import { Popup } from '@salte-auth/popup';
 import { Auth0 } from '@salte-auth/auth0';
@@ -25,7 +25,7 @@ const auth = new SalteAuth({
     new Popup({
       default: true,
     })
-  ]
+  ],
 });
 
 @Component({
@@ -34,17 +34,24 @@ const auth = new SalteAuth({
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  tokens = auth.config.providers.reduce((output, provider) => ({
-    ...output,
-    [provider.name]: getToken(provider)
-  }), {});
+  tokens: { [key: string]: any } = {};
+
+  constructor(private zone: NgZone) {
+    this.tokens = auth.config.providers.reduce((output, provider) => ({
+      ...output,
+      [provider.name]: getToken(provider)
+    }), {})
+  }
 
   ngOnInit() {
-    console.log(this.tokens);
-
     const onAuth = (error, { provider }) => {
-      if (error) console.error(error);
-      else this.tokens[provider] = getToken(auth.provider(provider));
+      if (error) {
+        console.error(error);
+      } else {
+        this.zone.run(() => {
+          this.tokens[provider] = getToken(auth.provider(provider));
+        });
+      }
     };
 
     auth.on('login', onAuth);
@@ -61,5 +68,13 @@ export class AppComponent implements OnInit {
 
   json(value) {
     return JSON.stringify(value, null, 2);
+  }
+
+  expired(token) {
+    return !token || token.expired;
+  }
+
+  user(token) {
+    return token && token.user && this.json(token.user);
   }
 }
